@@ -3,7 +3,7 @@ import './App.css';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
-
+import SalaryForm from './SalaryForm';
 
 
 
@@ -32,31 +32,13 @@ function App() {
   return (
       <div className="app-container">
         {/* Salary and raise input form */}
-        <div className="form-section">
-          <h2>Salary Projection Tool</h2>
-          <form>
-            <label>
-              Starting Salary: $
-              <input
-                  type="number"
-                  value={salary}
-                  onChange={handleSalaryChange}
-                  style={{ margin: '0 10px' }}
-              />
-            </label>
+        <SalaryForm
+            salary={salary}
+            raise={raise}
+            onSalaryChange={handleSalaryChange}
+            onRaiseChange={handleRaiseChange}
+        />
 
-            <label>
-              Annual Raise (%):
-              <input
-                  type="number"
-                  value={raise}
-                  onChange={handleRaiseChange}
-                  step="0.1"
-                  style={{ margin: '0 10px' }}
-              />
-            </label>
-          </form>
-        </div>
 
         {/* Table and chart in a side-by-side layout */}
         <div className="content-row">
