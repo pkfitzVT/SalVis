@@ -27,23 +27,23 @@ function App() {
     setRaise(Number(e.target.value));
   };
 
-  return (
-      <div className="app-container">
-        {/* Salary and raise input form */}
-        <SalaryForm
-            salary={salary}
-            raise={raise}
-            onSalaryChange={handleSalaryChange}
-            onRaiseChange={handleRaiseChange}
-        />
+    return (
+        <div className="app-container">
+            {/* Salary and raise input form */}
+            <SalaryForm
+                salary={salary}
+                raise={raise}
+                onSalaryChange={handleSalaryChange}
+                onRaiseChange={handleRaiseChange}
+            />
 
-
-        <SalaryTable projectionData={projectionData} />
-
-        <SalaryChart projectionData={projectionData} />
-      </div>
-
-);
+            {/* Table and chart side-by-side */}
+            <div className="content-row">
+                <SalaryTable projectionData={projectionData} />
+                <SalaryChart projectionData={projectionData} />
+            </div>
+        </div>
+    );
 }
 
 export default App;
