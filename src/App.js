@@ -4,7 +4,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 import SalaryForm from './SalaryForm';
-
+import SalaryTable from './SalaryTable';
 
 
 function App() {
@@ -40,27 +40,7 @@ function App() {
         />
 
 
-        {/* Table and chart in a side-by-side layout */}
-        <div className="content-row">
-          <div className="table-section">
-            <h3>Salary Projection</h3>
-            <table border="1" cellPadding="8">
-              <thead>
-              <tr>
-                <th>Year</th>
-                <th>Salary ($)</th>
-              </tr>
-              </thead>
-              <tbody>
-              {projectionData.map(({ year, salary }) => (
-                  <tr key={year}>
-                    <td>{year}</td>
-                    <td>{salary.toLocaleString()}</td>
-                  </tr>
-              ))}
-              </tbody>
-            </table>
-          </div>
+        <SalaryTable projectionData={projectionData} />
 
           <div className="chart-section">
             <h3>Salary Growth Chart</h3>
@@ -74,7 +54,6 @@ function App() {
               </LineChart>
             </ResponsiveContainer>
           </div>
-        </div>
       </div>
 
 
