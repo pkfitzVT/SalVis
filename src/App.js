@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import './App.css';
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+} from 'recharts';
+
+
+
 
 function App() {
   const [salary, setSalary] = useState(50000);
   const [raise, setRaise] = useState(5);
+
+  const projectionData = Array.from({ length: 10 }, (_, i) => {
+    const year = i + 1;
+    const projected = salary * Math.pow(1 + raise / 100, year);
+    return { year, salary: parseFloat(projected.toFixed(2)) };
+  });
+
+
+
+
 
   const handleSalaryChange = (e) => {
     setSalary(Number(e.target.value));
@@ -67,7 +83,24 @@ function App() {
           </tbody>
         </table>
       </div>
-</>
+
+
+        {/* This is the salary and raise graph display*/}
+
+        <div style={{ marginTop: '30px' }}>
+          <h3>Salary Growth Chart</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={projectionData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottomRight', offset: -5 }} />
+              <YAxis label={{ value: 'Salary ($)', angle: -90, position: 'insideLeft' }} />
+              <Tooltip />
+              <Line type="monotone" dataKey="salary" stroke="#8884d8" dot={true} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+      </>
 
 
 );
